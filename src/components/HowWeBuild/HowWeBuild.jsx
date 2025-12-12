@@ -37,7 +37,6 @@ export default function HowWeBuild() {
 
   return (
     <section>
-      {/* Добавляем CSS анимацию левитации */}
       <style>{`
         @keyframes float {
           0% { transform: translateY(0px) scale(1.1); }
@@ -47,37 +46,50 @@ export default function HowWeBuild() {
         .animate-float {
           animation: float 6s ease-in-out infinite;
         }
+        /* Уменьшенная анимация для мобильных, чтобы не дергалось сильно */
+        @media (max-width: 768px) {
+           @keyframes floatMobile {
+            0% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-10px) scale(1); }
+            100% { transform: translateY(0px) scale(1); }
+          }
+          .animate-float {
+            animation: floatMobile 5s ease-in-out infinite;
+          }
+        }
       `}</style>
 
-      <div className="bg-gray-100 py-16 px-4 text-center">
-        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 max-w-5xl mx-auto leading-tight">
+      <div className="bg-gray-100 py-12 md:py-16 px-4 text-center">
+        <h2 className="text-2xl md:text-5xl font-bold text-gray-900 max-w-5xl mx-auto leading-tight">
           There are two types of businesses: those <span className="text-emerald-500">that use AI</span> — and those that are out of business
         </h2>
       </div>
 
-      <div className="bg-[#0a0e17] py-24 px-4 text-white overflow-hidden">
+      <div className="bg-[#0a0e17] py-16 md:py-24 px-4 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
-          
-          <div className="text-center mb-24 relative z-10">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">
+
+          <div className="text-center mb-12 md:mb-24 relative z-10">
+            <h2 className="text-2xl md:text-5xl font-bold mb-4">
               How Emdula Builds Modern CRM Solutions
             </h2>
-            <p className="text-gray-400 text-lg">
+            <p className="text-gray-400 text-base md:text-lg">
               Practical, intelligent and built around real business needs.
             </p>
           </div>
 
-          <div className="relative flex items-center justify-center">
-            
-            <div className="w-full lg:w-[65%] bg-gradient-to-br from-[#0F3A3A]/90 to-[#052020]/90 backdrop-blur-sm rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/10 relative z-20 lg:right-[100px]">
-              <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
+<div className="relative flex flex-col lg:flex-row items-center justify-center">
+
+            {/* --- КАРТОЧКА --- */}
+            {/* z-20 чтобы текст был поверх робота */}
+            <div className="w-full lg:w-[65%] bg-gradient-to-br from-[#0F3A3A]/90 to-[#052020]/90 backdrop-blur-sm rounded-[2rem] lg:rounded-[3rem] p-6 md:p-12 shadow-2xl border border-white/10 relative z-20 lg:right-[100px]">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-x-12 md:gap-y-12">
                 {steps.map((step) => (
-                  <div key={step.id} className="flex flex-col items-start gap-4">
-                    <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-xl font-bold text-white shadow-lg shadow-emerald-500/30">
+                  <div key={step.id} className="flex flex-col items-start gap-3 md:gap-4">
+                    <div className="w-10 h-10 md:w-12 md:h-12 bg-emerald-500 rounded-full flex items-center justify-center text-lg md:text-xl font-bold text-white shadow-lg shadow-emerald-500/30">
                       {step.id}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2 text-white">{step.title}</h3>
+                      <h3 className="text-lg md:text-xl font-bold mb-2 text-white">{step.title}</h3>
                       <p className="text-gray-300 leading-relaxed text-sm opacity-90">{step.description}</p>
                     </div>
                   </div>
@@ -85,23 +97,31 @@ export default function HowWeBuild() {
               </div>
             </div>
 
-            <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 w-[50%] max-w-[700px] z-10 pointer-events-none">
-              {/* Добавил класс animate-float и убрал scale-110 из className (он теперь внутри анимации) */}
-              <img 
+            {/* --- МОБИЛЬНЫЙ РОБОТ (ПО ЦЕНТРУ) --- */}
+            {/* absolute top-1/2 left-1/2... — центрирует элемент по вертикали и горизонтали */}
+            {/* opacity-50 — делаем его полупрозрачным, чтобы не мешал читать текст */}
+            {/* z-10 — кладем ПОД карточку (текст будет z-20) */}
+            <div className="lg:hidden absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[80%] max-w-[300px] pointer-events-none">
+              <img
                 src={Illustation}
-                alt="Cute 3D Robot" 
-                className="w-full h-auto object-contain drop-shadow-2xl animate-float" 
+                alt="Robot"
+                className="w-full h-auto drop-shadow-xl animate-float opacity-60"
               />
             </div>
 
-            <div className="lg:hidden w-full flex justify-center mt-10">
-                <img src={Illustation} alt="Robot" className="w-64 h-auto drop-shadow-xl" />
+            {/* --- ДЕСКТОПНЫЙ РОБОТ (СПРАВА) --- */}
+            <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 w-[50%] max-w-[700px] z-10 pointer-events-none">
+              <img
+                src={Illustation}
+                alt="Cute 3D Robot"
+                className="w-full h-auto object-contain drop-shadow-2xl animate-float"
+              />
             </div>
 
           </div>
 
-          <div className="text-center mt-20 relative z-10">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 px-12 rounded-full transition-colors text-lg shadow-lg shadow-emerald-500/20 hover:scale-105 transform duration-200">
+          <div className="text-center mt-12 md:mt-20 relative z-10">
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-8 md:py-4 md:px-12 rounded-full transition-colors text-base md:text-lg shadow-lg shadow-emerald-500/20 hover:scale-105 transform duration-200">
               Get started
             </button>
           </div>

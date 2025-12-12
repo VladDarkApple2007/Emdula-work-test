@@ -1,4 +1,5 @@
 import React from 'react'
+import Logo from '../../img/Logo.png'
 
 export default function Footer() {
   
@@ -33,15 +34,7 @@ export default function Footer() {
           
           <div className="lg:col-span-3 space-y-8">
             <div className="flex items-center gap-2">
-              <svg 
-                xmlns="http://www.w3.org/2000/svg" 
-                viewBox="0 0 24 24" 
-                fill="currentColor" 
-                className="w-8 h-8 text-white"
-              >
-                <path d="M12 2a1 1 0 0 1 .89.55l.55 1.1c.36.72 1.44.72 1.8 0l.55-1.1A1 1 0 0 1 16.68 2h.04c.88 0 1.54.8 1.37 1.66l-.5 2.5a5 5 0 0 1-4.9 4.04H11.3a5 5 0 0 1-4.9-4.04l-.5-2.5C5.74 2.8 6.4 2 7.28 2h.04c.37 0 .7.2.89.55l.55 1.1c.36.72 1.44.72 1.8 0l.55-1.1A1 1 0 0 1 12 2Z" opacity="0.4"/>
-                <path fillRule="evenodd" d="M6.53 9.47a6 6 0 0 1 5.38-4.47h.18a6 6 0 0 1 5.38 4.47l1.24 6.2a2 2 0 0 1-1.96 2.39H7.25a2 2 0 0 1-1.96-2.4l1.24-6.2ZM13.5 14a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" clipRule="evenodd" />
-              </svg>
+              <img src={Logo} alt="" />
               <span className="text-2xl font-bold">Emdula</span>
             </div>
 
