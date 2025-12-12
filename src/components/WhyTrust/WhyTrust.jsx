@@ -11,7 +11,7 @@ export default function WhyTrust() {
     {
       title: "Built with industry teams",
       description: "Our systems are built with real operators, ensuring every feature solves a true operational need.",
-      iconSrc: Icon5 // Змінив структуру, щоб передавати тільки джерело
+      iconSrc: Icon5 
     },
     {
       title: "Modern, scalable foundation",
@@ -52,18 +52,17 @@ export default function WhyTrust() {
           {features.map((feature, index) => (
             <div 
               key={index} 
-              className="bg-[#f0f2f5] p-8 rounded-xl flex flex-col items-start hover:shadow-lg transition-shadow duration-300"
+              className="group bg-[#f0f2f5] p-8 rounded-xl flex flex-col items-start transition-all duration-300 hover:bg-white hover:-translate-y-2 hover:shadow-2xl hover:shadow-gray-400/20 cursor-default border border-transparent hover:border-gray-100"
             >
-              <div className="mb-6">
-                {/* Додані класи: w-12 h-12 (розмір) та object-contain (пропорції) */}
+              <div className="mb-6 bg-white rounded-full p-3 shadow-sm group-hover:scale-110 group-hover:shadow-md transition-all duration-300">
                 <img 
                   src={feature.iconSrc} 
                   alt="" 
-                  className="w-12 h-12 object-contain"
+                  className="w-10 h-10 object-contain"
                 />
               </div>
               
-              <h3 className="text-lg font-bold text-gray-900 mb-3">
+              <h3 className="text-lg font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors duration-300">
                 {feature.title}
               </h3>
               

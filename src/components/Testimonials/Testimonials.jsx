@@ -49,7 +49,23 @@ const testimonialsData = [
 ];
 
 const TestimonialCard = ({ data }) => (
-  <figure className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 break-inside-avoid">
+  <figure className="
+    bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6 break-inside-avoid 
+    cursor-pointer
+    transition-all duration-500 ease-in-out
+    group-hover/list:opacity-40 
+    group-hover/list:scale-95 
+    group-hover/list:blur-[2px]
+    group-hover/list:grayscale
+    hover:!opacity-100 
+    hover:!scale-105 
+    hover:!blur-0 
+    hover:!grayscale-0
+    hover:shadow-2xl 
+    hover:border-emerald-200
+    hover:z-20
+    relative
+  ">
     <blockquote className="text-gray-600 text-sm leading-relaxed mb-6">
       "{data.text}"
     </blockquote>
@@ -65,9 +81,8 @@ const TestimonialCard = ({ data }) => (
   </figure>
 );
 
-// ВИПРАВЛЕННЯ ТУТ: додали className = "" (значення за замовчуванням)
 const ReviewColumn = ({ reviews, className = "", duration = "40s" }) => (
-  <div className={`relative h-full overflow-hidden hover-pause ${className}`}>
+  <div className={`relative h-full overflow-hidden hover-pause px-2 ${className}`}>
     <div 
       className={className.includes('reverse') ? 'animate-scroll-down' : 'animate-scroll-up'} 
       style={{ animationDuration: duration }}
@@ -107,7 +122,7 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-hidden relative mask-gradient">
+        <div className="group/list grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-[600px] overflow-hidden relative mask-gradient">
           
           <ReviewColumn reviews={col1} duration="45s" />
           <ReviewColumn reviews={col2} className="hidden md:block reverse" duration="50s" />

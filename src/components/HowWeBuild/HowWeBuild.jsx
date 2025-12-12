@@ -1,7 +1,6 @@
 import React from 'react'
 import Illustation from '../../img/illustration.png'
 
-
 export default function HowWeBuild() {
   const steps = [
     {
@@ -38,17 +37,29 @@ export default function HowWeBuild() {
 
   return (
     <section>
+      {/* Добавляем CSS анимацию левитации */}
+      <style>{`
+        @keyframes float {
+          0% { transform: translateY(0px) scale(1.1); }
+          50% { transform: translateY(-20px) scale(1.1); }
+          100% { transform: translateY(0px) scale(1.1); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
+
       <div className="bg-gray-100 py-16 px-4 text-center">
-        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 max-w-4xl mx-auto leading-tight">
+        <h2 className="text-3xl md:text-5xl font-bold text-gray-900 max-w-5xl mx-auto leading-tight">
           There are two types of businesses: those <span className="text-emerald-500">that use AI</span> — and those that are out of business
         </h2>
       </div>
 
-      <div className="bg-[#0a0e17] py-24 px-4 text-white">
+      <div className="bg-[#0a0e17] py-24 px-4 text-white overflow-hidden">
         <div className="max-w-7xl mx-auto">
           
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+          <div className="text-center mb-24 relative z-10">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
               How Emdula Builds Modern CRM Solutions
             </h2>
             <p className="text-gray-400 text-lg">
@@ -56,36 +67,41 @@ export default function HowWeBuild() {
             </p>
           </div>
 
-          <div className="flex flex-col lg:flex-row items-center gap-12 relative">
+          <div className="relative flex items-center justify-center">
             
-            <div className="w-full lg:w-2/3 bg-[#0d2a2a] rounded-[3rem] p-8 md:p-12">
+            <div className="w-full lg:w-[65%] bg-gradient-to-br from-[#0F3A3A]/90 to-[#052020]/90 backdrop-blur-sm rounded-[3rem] p-8 md:p-12 shadow-2xl border border-white/10 relative z-20 lg:right-[100px]">
               <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
                 {steps.map((step) => (
                   <div key={step.id} className="flex flex-col items-start gap-4">
-                    <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-xl font-bold text-white">
+                    <div className="w-12 h-12 bg-emerald-500 rounded-full flex items-center justify-center text-xl font-bold text-white shadow-lg shadow-emerald-500/30">
                       {step.id}
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                      <p className="text-gray-400 leading-relaxed">{step.description}</p>
+                      <h3 className="text-xl font-bold mb-2 text-white">{step.title}</h3>
+                      <p className="text-gray-300 leading-relaxed text-sm opacity-90">{step.description}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="w-full lg:w-1/3 flex justify-center absolute">
+            <div className="hidden lg:block absolute -right-12 top-1/2 -translate-y-1/2 w-[50%] max-w-[700px] z-10 pointer-events-none">
+              {/* Добавил класс animate-float и убрал scale-110 из className (он теперь внутри анимации) */}
               <img 
                 src={Illustation}
-                alt="Cute 3D Robot giving a thumbs up" 
-                className="w-full max-w-sm lg:max-w-none h-auto object-contain drop-shadow-2xl"
+                alt="Cute 3D Robot" 
+                className="w-full h-auto object-contain drop-shadow-2xl animate-float" 
               />
+            </div>
+
+            <div className="lg:hidden w-full flex justify-center mt-10">
+                <img src={Illustation} alt="Robot" className="w-64 h-auto drop-shadow-xl" />
             </div>
 
           </div>
 
-          <div className="text-center mt-16">
-            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-3 px-10 rounded-full transition-colors text-lg">
+          <div className="text-center mt-20 relative z-10">
+            <button className="bg-emerald-500 hover:bg-emerald-600 text-white font-semibold py-4 px-12 rounded-full transition-colors text-lg shadow-lg shadow-emerald-500/20 hover:scale-105 transform duration-200">
               Get started
             </button>
           </div>
